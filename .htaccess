@@ -1,0 +1,23 @@
+RewriteEngine On
+Options +FollowSymlinks
+RewriteBase /
+
+RewriteCond %{HTTP_HOST} my-tw.tk
+RewriteCond %{REQUEST_URI} !mytw_domain/
+RewriteRule ^(.*)$ mytw_domain/$1 [L]
+
+RewriteCond %{HTTP_HOST} loginapi.my-tw.tk
+RewriteCond %{REQUEST_URI} !api_login/
+RewriteRule ^(.*)$ api_login/$1 [L]
+
+RewriteCond %{HTTP_HOST} uploads.privek.tk
+RewriteCond %{REQUEST_URI} !upload/
+RewriteRule ^(.*)$ upload/$1 [L]
+
+RewriteCond %{HTTP_HOST} admintool.privek.tk
+RewriteCond %{REQUEST_URI} !admin_tools/
+RewriteRule ^(.*)$ admin_tools/$1 [L]
+
+ErrorDocument 404 /libraries/errors/404.php
+
+RewriteRule ^([^.]+)?$ index.php?path=/$1 [L]
